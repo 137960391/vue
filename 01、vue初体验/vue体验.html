@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <!--创建div-->
+    <!--mustache表达式-->
+    <div id="app">
+        <h1>系统名称:{{title}}</h1>
+        <ul>
+            <!--(item,i) in中间必须有空格-->
+            <li v-for="(item,i) in products">
+                名称：{{item.name}}
+                <!--找item直接减-->
+                <button @click="changeStock(item)">-</button>
+                <span v-if="item.stock > 0"> 存货:{{item.stock}}</span>
+                <span v-else="item.stock = 0"> 无货</span>
+                <button @click="item.stock++">+</button>
+                <button @click="remove(i)">删除</button>
+            </li>
+        </ul>
+    </div>
+    <!--引入vue文件,内部引用-->
+    <script src="vue.min.js"></script>
+    <!--vue监管文件-->
+    <script>
+        //创建vue对象
+        vu = new Vue(//配置vue
+            {
+                el: "#app", //css选择器
+                data: {
+                    //和界面相关的数据
+                    title: "库存管理系统",
+                    //数据必须写在data里面，否则找不到
+                    products: [
+                        { name: "iphone", stock: 20 },
+                        { name: "vivo", stock: 10 },
+                        { name: "oppo", stock: 8 },
+                    ],
+                },
+                methods: {
+                    remove(i) {
+                        this.products.splice(i, 1);
+                    },
+                    changeStock(item) {
+                        item.stock = item.stock - 1;
+                        if (item.stock < 1) {
+                            item.stock = 0;
+                        }
+                        console.log(item.stock)
+                        
+                    }
+                },
+
+            },
+        );
+    </script>
+</body>
+
+</html>
