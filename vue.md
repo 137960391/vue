@@ -3,7 +3,7 @@
 [toc]
 
 ##一、起步
-'''html
+```html
 <!DOCTYPE html>
 <html lang="en">
 
@@ -69,4 +69,4 @@
     </script>
 </body>
 </html>
-'''
+```
