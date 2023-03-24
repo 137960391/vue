@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=<device-width>, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="di">
+        <h>{{title}}<h>
+        <h v-html="title"></h>
+        <button @click="test()">click</button>
+        <a href="https://www.baidu.com" @click.prevent="test()">click</a>
+        <div @click="test3">
+             <button @click.stop="test2($event)">but</button>
+        </div>
+        <img v-show="isShow" v-bind:src="imgUrl" />
+        <button @click="isShow = !isShow">切换显示</button>
+        <p>{{text}}</p>
+        <!-- <input :value="text" @input="text = $event.target.value"> -->
+				<input :value="text" v-model="text">
+				<p>{{fullName}}</p>
+    </div>
+
+
+
+    <script src="./../vue.min.js"></script>
+    <script>
+        var v = new Vue(
+            {
+                el: "#di",
+                data: {
+                    isShow:true,
+                    title: "<p style='color:red'>Lorem</p>",
+                    imgUrl:"https://t15.baidu.com/it/u=1372841570,3864405121&fm=58&s=DE913BC3663335941B0484C80300E0D1",
+                    text:"adc",
+										firstName:"Du",
+										lastName:"Han",
+                },
+								//计算属性
+								computed:{
+										fullName(){
+											return this.firstName + this.lastName;
+										}
+								},
+                methods: {
+                    test() {
+                        console.log("hrllo");
+                    },
+                    test2(e) {
+                        console.log(e);
+                    },
+                    test3(e) {
+                        console.log(e);
+                    }
+                }
+            }
+        )
+    </script>
+
+</body>
+
+</html>
